@@ -5,7 +5,7 @@ nome e peso. Stampare a schermo la bici con peso minore utilizzando destructurin
 
 var biciCorsa = [{
         nome: "corsa scrausa",
-        peso: 1
+        peso: 3
     },
     {
         nome: "corsa media",
@@ -13,11 +13,11 @@ var biciCorsa = [{
     },
     {
         nome: "corsa costosa",
-        peso: 3
+        peso: 4
     },
     {
         nome: "da passeggio",
-        peso: 4
+        peso: 1
     },
 
 ];
@@ -25,14 +25,20 @@ var biciCorsa = [{
 
 const [bici1, bici2, bici3, bici4] = biciCorsa;
 
-
+var bicileggera = biciCorsa[0];
 biciCorsa.forEach((element) => {
-    if (element.peso < 2) {
-        console.log(`
-    ${element.nome} is the lighter bike. Its wheigt is ${element.peso} kg
-    `);
+    if (element.peso < bicileggera.peso) {
+        bicileggera = element;
     }
 });
+console.log(bicileggera);
+
+
+console.log(`
+    ${bicileggera.nome} is the lighter bike. Its wheigt is ${bicileggera.peso} kg
+      `);
+
+
 
 
 //Creare un array di oggetti di squadre di calcio.
@@ -64,10 +70,10 @@ var squadreCalcio = [{
 
 ];
 
+
 //funzioni random
 
 const getRndInteger = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
 
 squadreCalcio.forEach((element) => {
     element.punti_fatti = getRndInteger(1, 40);
@@ -81,7 +87,77 @@ console.log(squadreCalcio);
 var nuovoArray = [];
 
 squadreCalcio.forEach((element) => {
-    const { nome, falli_subiti } = element;
+    let { nome, falli_subiti } = element;
     nuovoArray.push({ name: nome, falli_subiti: falli_subiti });
 });
 console.log(nuovoArray);
+
+
+
+//5)
+//Scrivi una funzione che accetti tre argomenti:
+//un array e due numeri (“a” più piccolo di “b” e “b” grande al
+//massimo quanto il numero di elementi dell’array).
+/*
+La funzione ritornerà un nuovo array con i valori che
+hanno la posizione compresa tra “a” e “b” */
+
+//Usiamo i nuovi metodi degli array foreach o filter
+
+
+
+var arrayprova3 = [1, 2, 3, 4, 5, 6, 7, 8];
+
+a = 3;
+b = 5;
+
+function slicedArray(array, num1, num2) {
+    var arrayNuovo = [];
+    if (num1 >= num2 || b > array.length) {
+        return console.log("inserisci due numeri validi per estrarre i valori dell'array");
+    } else {
+        for (var i = 0; i < array.length; i++) {
+            if (i >= num1 && i <= num2) {
+                arrayNuovo.push(array[i]);
+            };
+        };
+    };
+    return arrayNuovo;
+};
+
+console.log(slicedArray(arrayprova3, a, b));
+
+//UTILIZZO FOR EACH AL POSTO DI FOR
+
+function slicedArray2(array, num1, num2) {
+    var arrayNuovo = [];
+    if (num1 >= num2 || b > array.length) {
+        return console.log("inserisci due numeri validi per estrarre i valori dell'array");
+    } else {
+        array.forEach((element, index) => {
+            if (index >= num1 && index <= num2) {
+                arrayNuovo.push(element);
+            };
+        });
+        return arrayNuovo;
+    };
+};
+
+
+console.log(slicedArray2(arrayprova3, a, b));
+
+
+//UTILIZZO FILTER AL POSTO DI FOR
+
+function slicedArray3(array, num1, num2) {
+
+    if (num1 >= num2 || b > array.length) {
+        return console.log("inserisci due numeri validi per estrarre i valori dell'array");
+    } else {
+        return array.filter((element, index) => {
+            return (index >= num1 && index <= num2)
+        });
+    }
+};
+
+console.log(slicedArray3(arrayprova3, a, b));
